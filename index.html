@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Coffee Bar Volunteer Scheduler</title>
-
+ 
     <!-- ============================================================ -->
     <!-- SETUP: paste your Supabase project URL + anon key below      -->
     <!-- ============================================================ -->
@@ -15,29 +15,29 @@
         const EXPIRY_DAYS = 30;
     </script>
     <!-- ============================================================ -->
-
+ 
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-
+ 
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
-
+ 
         body {
             font-family: 'Helvetica Neue', Arial, sans-serif;
             background: #b9cdc7;
             min-height: 100vh;
             color: #e8e6df;
         }
-
+ 
         .container {
             max-width: 56rem;
             margin: 0 auto;
             padding: 1.5rem;
         }
-
+ 
         /* Gate screen */
         .gate-screen {
             min-height: 100vh;
@@ -46,7 +46,7 @@
             justify-content: center;
             background: #33403c;
         }
-
+ 
         .gate-box {
             background: white;
             padding: 2.5rem;
@@ -55,38 +55,38 @@
             width: 90%;
             text-align: center;
         }
-
+ 
         .gate-box h2 {
             font-family: 'Georgia', serif;
             color: #33403c;
             margin-bottom: 1rem;
             font-size: 1.5rem;
         }
-
+ 
         .gate-box p {
             color: #5c6b66;
             margin-bottom: 1.5rem;
             font-size: 0.9rem;
         }
-
+ 
         .gate-error {
             color: #9c3b2e;
             font-size: 0.85rem;
             margin-top: 0.75rem;
             display: none;
         }
-
+ 
         /* Header */
         .header {
             background: #33403c;
             padding: 2.5rem 1.5rem 3rem 1.5rem;
         }
-
+ 
         .header-inner {
             max-width: 56rem;
             margin: 0 auto;
         }
-
+ 
         .header .label {
             font-size: 0.75rem;
             font-weight: 700;
@@ -94,7 +94,7 @@
             color: #c9bfae;
             margin-bottom: 1.5rem;
         }
-
+ 
         .header h1 {
             font-size: 2rem;
             font-weight: 400;
@@ -104,21 +104,21 @@
             color: #f4f1ea;
             line-height: 1.3;
         }
-
+ 
         .header p {
             color: #c9bfae;
             font-size: 1rem;
             font-family: 'Georgia', serif;
             line-height: 1.6;
         }
-
+ 
         .header .times-block {
             margin-top: 2rem;
             display: flex;
             gap: 3rem;
             flex-wrap: wrap;
         }
-
+ 
         .header .times-col h3 {
             font-family: 'Georgia', serif;
             font-weight: 400;
@@ -127,17 +127,17 @@
             margin-bottom: 0.5rem;
             letter-spacing: 0.02em;
         }
-
+ 
         .header .times-col p {
             color: #c9bfae;
             font-size: 0.95rem;
         }
-
+ 
         .body-wrap {
             background: #b9cdc7;
             padding-top: 2rem;
         }
-
+ 
         /* Tabs */
         .tabs {
             display: flex;
@@ -146,7 +146,7 @@
             margin-bottom: 2rem;
             flex-wrap: wrap;
         }
-
+ 
         .tab-button {
             padding: 0.75rem 1.5rem;
             font-size: 0.85rem;
@@ -160,29 +160,29 @@
             border-bottom: 2px solid transparent;
             transition: all 0.2s;
         }
-
+ 
         .tab-button.active {
             opacity: 1;
             border-bottom-color: #33403c;
         }
-
+ 
         .tab-button:hover {
             opacity: 0.85;
         }
-
+ 
         .tab-content {
             display: none;
         }
-
+ 
         .tab-content.active {
             display: block;
         }
-
+ 
         /* Form */
         .form-group {
             margin-bottom: 1.5rem;
         }
-
+ 
         .form-group label {
             display: block;
             font-size: 0.8rem;
@@ -192,7 +192,7 @@
             color: #33403c;
             text-transform: uppercase;
         }
-
+ 
         .form-group input {
             width: 100%;
             padding: 0.75rem;
@@ -204,18 +204,18 @@
             transition: all 0.2s;
             font-family: 'Helvetica Neue', Arial, sans-serif;
         }
-
+ 
         .form-group input:focus {
             outline: none;
             border-color: #33403c;
         }
-
+ 
         .form-hint {
             font-size: 0.78rem;
             color: #5c6b66;
             margin-top: 0.4rem;
         }
-
+ 
         /* Sunday Grid */
         .sundays-grid {
             display: grid;
@@ -223,7 +223,7 @@
             gap: 1rem;
             margin-bottom: 1.5rem;
         }
-
+ 
         .sunday-card {
             border: 1px solid #8fa89f;
             border-radius: 0.25rem;
@@ -231,24 +231,24 @@
             background: white;
             transition: all 0.2s;
         }
-
+ 
         .sunday-card:hover {
             background: #f4f7f6;
         }
-
+ 
         .sunday-date {
             font-weight: 600;
             color: #33403c;
             margin-bottom: 0.75rem;
             font-size: 0.95rem;
         }
-
+ 
         .time-slots {
             display: flex;
             flex-direction: column;
             gap: 0.5rem;
         }
-
+ 
         .time-slot-button {
             display: flex;
             align-items: center;
@@ -263,17 +263,17 @@
             font-size: 0.875rem;
             transition: all 0.2s;
         }
-
+ 
         .time-slot-button:hover {
             border-color: #33403c;
         }
-
+ 
         .time-slot-button.selected {
             background: #33403c;
             border-color: #33403c;
             color: white;
         }
-
+ 
         .checkbox {
             width: 1rem;
             height: 1rem;
@@ -285,12 +285,12 @@
             font-size: 0.7rem;
             flex-shrink: 0;
         }
-
+ 
         .time-slot-button.selected .checkbox::after {
             content: '✓';
             font-weight: bold;
         }
-
+ 
         /* Button */
         .btn {
             width: 100%;
@@ -309,27 +309,27 @@
             justify-content: center;
             gap: 0.5rem;
         }
-
+ 
         .btn:hover:not(:disabled) {
             background: #232b28;
         }
-
+ 
         .btn:disabled {
             background: #8fa89f;
             cursor: not-allowed;
             opacity: 0.6;
         }
-
+ 
         .btn-secondary {
             background: white;
             color: #33403c;
             border: 1px solid #8fa89f;
         }
-
+ 
         .btn-secondary:hover:not(:disabled) {
             background: #f4f7f6;
         }
-
+ 
         /* Confirmation */
         .confirmation {
             background: #e3ebe8;
@@ -340,12 +340,12 @@
             font-size: 0.875rem;
             color: #33403c;
         }
-
+ 
         .confirmation.success {
             background: #dcebe3;
             border-color: #6fa888;
         }
-
+ 
         .confirmation .pin-display {
             font-size: 1.5rem;
             font-weight: 700;
@@ -353,7 +353,7 @@
             color: #33403c;
             margin: 0.5rem 0;
         }
-
+ 
         /* Volunteer List */
         .volunteers-section {
             background: white;
@@ -362,20 +362,20 @@
             overflow: hidden;
             margin-bottom: 2rem;
         }
-
+ 
         .volunteers-header {
             background: #e3ebe8;
             border-bottom: 1px solid #8fa89f;
             padding: 1.25rem 2rem;
         }
-
+ 
         .volunteers-header h2 {
             font-size: 1.1rem;
             font-family: 'Georgia', serif;
             font-weight: 700;
             color: #33403c;
         }
-
+ 
         .volunteer-item {
             padding: 1rem 2rem;
             border-bottom: 1px solid #e3ebe8;
@@ -384,26 +384,26 @@
             align-items: center;
             transition: all 0.2s;
         }
-
+ 
         .volunteer-item:last-child {
             border-bottom: none;
         }
-
+ 
         .volunteer-item:hover {
             background: #f4f7f6;
         }
-
+ 
         .volunteer-info h3 {
             font-weight: 600;
             color: #33403c;
             margin-bottom: 0.25rem;
         }
-
+ 
         .volunteer-info p {
             font-size: 0.875rem;
             color: #5c6b66;
         }
-
+ 
         .delete-btn {
             background: #f3e3e0;
             color: #9c3b2e;
@@ -414,11 +414,11 @@
             font-weight: 500;
             transition: all 0.2s;
         }
-
+ 
         .delete-btn:hover {
             background: #e8cec9;
         }
-
+ 
         /* Empty State */
         .empty-state {
             background: #e3ebe8;
@@ -428,12 +428,12 @@
             text-align: center;
             color: #5c6b66;
         }
-
+ 
         /* Grid Output */
         .schedule-grid {
             margin-top: 2rem;
         }
-
+ 
         .sunday-row {
             margin-bottom: 1.5rem;
             background: white;
@@ -441,7 +441,7 @@
             border-radius: 0.25rem;
             overflow: hidden;
         }
-
+ 
         .sunday-header {
             background: #e3ebe8;
             padding: 1rem 1.5rem;
@@ -450,23 +450,23 @@
             color: #33403c;
             font-family: 'Georgia', serif;
         }
-
+ 
         .slot-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 0;
             min-height: 160px;
         }
-
+ 
         .slot-column {
             padding: 1.5rem;
             border-right: 1px solid #e3ebe8;
         }
-
+ 
         .slot-column:last-child {
             border-right: none;
         }
-
+ 
         .slot-header {
             font-weight: 600;
             color: #33403c;
@@ -478,14 +478,14 @@
             justify-content: space-between;
             align-items: center;
         }
-
+ 
         .slot-count {
             font-size: 0.75rem;
             color: #5c6b66;
             font-weight: normal;
             font-style: italic;
         }
-
+ 
         .frank-card {
             background: #f4f7f6;
             border: 1px solid #e3ebe8;
@@ -493,26 +493,26 @@
             padding: 0.75rem;
             margin-bottom: 0.75rem;
         }
-
+ 
         .frank-name {
             font-weight: 600;
             color: #33403c;
             font-size: 0.95rem;
         }
-
+ 
         .frank-experience {
             font-size: 0.75rem;
             color: #5c6b66;
             margin-top: 0.25rem;
         }
-
+ 
         .empty-slot {
             color: #5c6b66;
             font-size: 0.875rem;
             font-style: italic;
             opacity: 0.7;
         }
-
+ 
         .info-box {
             background: #e3ebe8;
             border: 1px solid #8fa89f;
@@ -522,11 +522,11 @@
             font-size: 0.875rem;
             color: #33403c;
         }
-
+ 
         .info-box strong {
             font-weight: 600;
         }
-
+ 
         /* All Selections Tab */
         .selections-table-wrap {
             background: white;
@@ -534,13 +534,13 @@
             border-radius: 0.25rem;
             overflow-x: auto;
         }
-
+ 
         table.selections-table {
             width: 100%;
             border-collapse: collapse;
             font-size: 0.85rem;
         }
-
+ 
         table.selections-table th,
         table.selections-table td {
             padding: 0.65rem 0.75rem;
@@ -548,7 +548,7 @@
             border-bottom: 1px solid #e3ebe8;
             white-space: nowrap;
         }
-
+ 
         table.selections-table th {
             background: #e3ebe8;
             color: #33403c;
@@ -559,7 +559,7 @@
             position: sticky;
             top: 0;
         }
-
+ 
         table.selections-table th.name-col,
         table.selections-table td.name-col {
             position: sticky;
@@ -567,16 +567,16 @@
             background: white;
             z-index: 1;
         }
-
+ 
         table.selections-table th.name-col {
             background: #e3ebe8;
             z-index: 2;
         }
-
+ 
         table.selections-table td {
             color: #33403c;
         }
-
+ 
         .slot-mark {
             display: inline-block;
             width: 1.4rem;
@@ -587,12 +587,12 @@
             font-size: 0.85rem;
             font-weight: 700;
         }
-
+ 
         .slot-mark.am { background: #d8e6e1; color: #2e5447; }
         .slot-mark.pm { background: #ece0d4; color: #7a5230; }
         .slot-mark.both { background: #33403c; color: white; }
         .slot-mark.none { color: #c5c5c5; }
-
+ 
         .legend {
             display: flex;
             gap: 1.5rem;
@@ -603,13 +603,13 @@
             color: #5c6b66;
             align-items: center;
         }
-
+ 
         .legend-item {
             display: flex;
             align-items: center;
             gap: 0.4rem;
         }
-
+ 
         /* Edit lookup box */
         .edit-lookup {
             background: white;
@@ -618,25 +618,25 @@
             padding: 2rem;
             margin-bottom: 2rem;
         }
-
+ 
         .edit-lookup h3 {
             font-family: 'Georgia', serif;
             color: #33403c;
             margin-bottom: 0.75rem;
         }
-
+ 
         .edit-lookup p {
             color: #5c6b66;
             font-size: 0.875rem;
             margin-bottom: 1rem;
         }
-
+ 
         .lookup-row {
             display: flex;
             gap: 0.75rem;
             flex-wrap: wrap;
         }
-
+ 
         .lookup-row input {
             flex: 1;
             min-width: 150px;
@@ -645,7 +645,7 @@
             border-radius: 0.25rem;
             font-size: 1rem;
         }
-
+ 
         .lookup-row button {
             padding: 0.75rem 1.5rem;
             background: #33403c;
@@ -655,14 +655,14 @@
             cursor: pointer;
             font-weight: 600;
         }
-
+ 
         .lookup-error {
             color: #9c3b2e;
             font-size: 0.85rem;
             margin-top: 0.75rem;
             display: none;
         }
-
+ 
         .status-banner {
             background: #f3e3e0;
             color: #9c3b2e;
@@ -675,25 +675,25 @@
     </style>
 </head>
 <body>
-
+ 
     <!-- ===================== INVITE GATE ===================== -->
     <div id="gateScreen" class="gate-screen">
         <div class="gate-box">
-            <h2> Coffee Bar Sign-Up</h2>
+            <h2>Coffee Bar Sign-Up</h2>
             <p>This page is invite-only. Enter the access word from your invite link or message.</p>
             <input type="password" id="gateInput" placeholder="Access word" style="width:100%; padding:0.75rem; border:1px solid #8fa89f; border-radius:0.25rem; font-size:1rem; margin-bottom:0.75rem;">
             <button class="btn" onclick="checkGate()">Enter</button>
             <p class="gate-error" id="gateError">That access word isn't right. Check your invite and try again.</p>
         </div>
     </div>
-
+ 
     <!-- ===================== MAIN APP (hidden until unlocked) ===================== -->
     <div id="mainApp" style="display:none;">
         <div class="header">
             <div class="header-inner">
                 <div class="label">TIMES &amp; SIGN UP</div>
                 <h1>Sunday Coffee Bar Volunteers</h1>
-                <p>Sign up below to help host the bar before and after service.</p>
+                <p>Sign up below to help host the coffee bar before and after service.</p>
                 <div class="times-block">
                     <div class="times-col">
                         <h3>Sunday Morning</h3>
@@ -706,20 +706,20 @@
                 </div>
             </div>
         </div>
-
+ 
         <div class="body-wrap">
             <div class="container">
                 <div class="status-banner" id="statusBanner"></div>
-
+ 
                 <div class="tabs">
                     <button class="tab-button active" onclick="switchTab('volunteer')">Add / Edit Myself</button>
                     <button class="tab-button" onclick="switchTab('admin')">Admin: Schedule (<span id="vol-count">0</span>)</button>
                     <button class="tab-button" onclick="switchTab('allSelections')">All Selections</button>
                 </div>
-
+ 
                 <!-- Volunteer Tab -->
                 <div id="volunteer" class="tab-content active">
-
+ 
                     <div class="edit-lookup">
                         <h3>Already signed up?</h3>
                         <p>Enter your name and the 4-digit PIN you were given to edit your availability.</p>
@@ -730,23 +730,23 @@
                         </div>
                         <p class="lookup-error" id="lookupError">Name and PIN don't match. Double check and try again, or just sign up fresh below.</p>
                     </div>
-
+ 
                     <div style="background: white; border: 1px solid #8fa89f; border-radius: 0.25rem; padding: 2rem;">
                         <div class="form-group">
                             <label>Your Name</label>
                             <input type="text" id="name" placeholder="Enter your name">
                         </div>
-
+ 
                         <div class="form-group">
                             <label>Years of Experience</label>
                             <input type="number" id="experience" placeholder="e.g., 2" min="0" max="99">
                         </div>
-
+ 
                         <div class="form-group">
                             <label>Which Sundays and times are you available?</label>
                             <div class="sundays-grid" id="sundaysGrid"></div>
                         </div>
-
+ 
                         <button class="btn" onclick="addVolunteer()" id="submitBtn" disabled>
                             <span>+</span> <span id="submitBtnLabel">Add to Schedule</span>
                         </button>
@@ -754,10 +754,10 @@
                             Cancel Edit
                         </button>
                     </div>
-
+ 
                     <div class="confirmation" id="confirmation" style="display: none;"></div>
                 </div>
-
+ 
                 <!-- Admin Tab -->
                 <div id="admin" class="tab-content">
                     <div id="volunteersList"></div>
@@ -766,7 +766,7 @@
                     </button>
                     <div id="scheduleGrid"></div>
                 </div>
-
+ 
                 <!-- All Selections Tab -->
                 <div id="allSelections" class="tab-content">
                     <div id="allSelectionsContent"></div>
@@ -774,7 +774,7 @@
             </div>
         </div>
     </div>
-
+ 
     <script>
         // ============================================================
         // INVITE GATE
@@ -790,7 +790,7 @@
                 document.getElementById('gateError').style.display = 'block';
             }
         }
-
+ 
         // Allow ?invite=word in the URL to skip typing it
         (function checkUrlInvite() {
             const params = new URLSearchParams(window.location.search);
@@ -799,7 +799,7 @@
                 sessionStorage.setItem('cb_gate_ok', 'true');
             }
         })();
-
+ 
         document.addEventListener('DOMContentLoaded', function() {
             if (sessionStorage.getItem('cb_gate_ok') === 'true') {
                 document.getElementById('gateScreen').style.display = 'none';
@@ -807,33 +807,33 @@
                 init();
             }
         });
-
+ 
         // ============================================================
         // SUPABASE CLIENT
         // ============================================================
-        let supabase;
+        let supabaseClient;
         let volunteers = [];
         let editingId = null; // if set, we are editing an existing row
         let formData = { name: '', experience: '', availableSundays: {} };
         let anonymized = false;
         let suggestions = [];
-
+ 
         function init() {
             if (SUPABASE_URL.includes('PASTE_') || SUPABASE_ANON_KEY.includes('PASTE_')) {
                 showStatus('Setup incomplete: add your Supabase URL and anon key at the top of this file.');
                 return;
             }
-            supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+            supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
             renderSundays();
             loadVolunteers();
         }
-
+ 
         function showStatus(msg) {
             const el = document.getElementById('statusBanner');
             el.textContent = msg;
             el.style.display = 'block';
         }
-
+ 
         // ============================================================
         // DATE HELPERS
         // ============================================================
@@ -844,7 +844,7 @@
             const firstSunday = new Date(today);
             firstSunday.setDate(today.getDate() + (7 - dayOfWeek || 7));
             firstSunday.setHours(9, 0, 0, 0);
-
+ 
             for (let i = 0; i < 12; i++) {
                 const date = new Date(firstSunday);
                 date.setDate(firstSunday.getDate() + i * 7);
@@ -858,29 +858,29 @@
             return sundays;
         }
         const sundays = getSundays();
-
+ 
         function generatePin() {
             return String(Math.floor(1000 + Math.random() * 9000));
         }
-
+ 
         // ============================================================
         // LOAD / SAVE FROM SUPABASE
         // ============================================================
         async function loadVolunteers() {
             const cutoff = new Date();
             cutoff.setDate(cutoff.getDate() - EXPIRY_DAYS);
-
-            const { data, error } = await supabase
+ 
+            const { data, error } = await supabaseClient
                 .from('volunteers')
                 .select('*')
                 .gte('created_at', cutoff.toISOString())
                 .order('created_at', { ascending: true });
-
+ 
             if (error) {
                 showStatus('Could not load volunteers: ' + error.message);
                 return;
             }
-
+ 
             volunteers = (data || []).map(row => ({
                 id: row.id,
                 name: row.name,
@@ -888,24 +888,24 @@
                 experience: row.experience,
                 availableSundays: row.available_sundays || {}
             }));
-
+ 
             updateVolunteerList();
             renderAllSelections();
         }
-
+ 
         async function purgeExpired() {
             const cutoff = new Date();
             cutoff.setDate(cutoff.getDate() - EXPIRY_DAYS);
-            await supabase.from('volunteers').delete().lt('created_at', cutoff.toISOString());
+            await supabaseClient.from('volunteers').delete().lt('created_at', cutoff.toISOString());
         }
-
+ 
         // ============================================================
         // SUNDAY SELECTION UI
         // ============================================================
         function renderSundays() {
             const grid = document.getElementById('sundaysGrid');
             grid.innerHTML = '';
-
+ 
             sundays.forEach(sunday => {
                 const slots = formData.availableSundays[sunday.id] || { morning: false, evening: false };
                 const card = document.createElement('div');
@@ -926,36 +926,36 @@
                 grid.appendChild(card);
             });
         }
-
+ 
         function toggleTimeSlot(sundayId, timeSlot) {
             const current = formData.availableSundays[sundayId] || { morning: false, evening: false };
             current[timeSlot] = !current[timeSlot];
-
+ 
             if (!current.morning && !current.evening) {
                 delete formData.availableSundays[sundayId];
             } else {
                 formData.availableSundays[sundayId] = current;
             }
-
+ 
             renderSundays();
             updateConfirmation();
             updateForm();
         }
-
+ 
         function updateForm() {
             const name = document.getElementById('name').value.trim();
             const experience = document.getElementById('experience').value;
             const hasSlots = Object.keys(formData.availableSundays).length > 0;
             document.getElementById('submitBtn').disabled = !name || !experience || !hasSlots;
         }
-
+ 
         function updateConfirmation() {
-            if (editingId) return; // don't show the "selected" confirmation while editing
+            if (editingId) return;
             const slotCount = Object.values(formData.availableSundays).reduce((count, slots) => {
                 return count + (slots.morning ? 1 : 0) + (slots.evening ? 1 : 0);
             }, 0);
             const sundayCount = Object.keys(formData.availableSundays).length;
-
+ 
             if (slotCount > 0) {
                 document.getElementById('confirmation').style.display = 'block';
                 document.getElementById('confirmation').className = 'confirmation';
@@ -966,21 +966,20 @@
                 document.getElementById('confirmation').style.display = 'none';
             }
         }
-
+ 
         // ============================================================
         // ADD / UPDATE VOLUNTEER
         // ============================================================
         async function addVolunteer() {
             const name = document.getElementById('name').value.trim();
             const experience = parseInt(document.getElementById('experience').value);
-
+ 
             if (!name || !experience || Object.keys(formData.availableSundays).length === 0) return;
-
+ 
             document.getElementById('submitBtn').disabled = true;
-
+ 
             if (editingId) {
-                // UPDATE existing row
-                const { error } = await supabase
+                const { error } = await supabaseClient
                     .from('volunteers')
                     .update({
                         name: name,
@@ -988,21 +987,20 @@
                         available_sundays: formData.availableSundays
                     })
                     .eq('id', editingId);
-
+ 
                 if (error) {
                     showStatus('Could not save changes: ' + error.message);
                     document.getElementById('submitBtn').disabled = false;
                     return;
                 }
-
+ 
                 document.getElementById('confirmation').style.display = 'block';
                 document.getElementById('confirmation').className = 'confirmation success';
                 document.getElementById('confirmation').innerHTML = `<strong>Updated!</strong> Your availability has been saved.`;
                 cancelEdit();
             } else {
-                // INSERT new row
                 const pin = generatePin();
-                const { data, error } = await supabase
+                const { data, error } = await supabaseClient
                     .from('volunteers')
                     .insert({
                         name: name,
@@ -1011,18 +1009,18 @@
                         available_sundays: formData.availableSundays
                     })
                     .select();
-
+ 
                 if (error) {
                     showStatus('Could not sign up: ' + error.message);
                     document.getElementById('submitBtn').disabled = false;
                     return;
                 }
-
+ 
                 document.getElementById('name').value = '';
                 document.getElementById('experience').value = '';
                 formData.availableSundays = {};
                 renderSundays();
-
+ 
                 document.getElementById('confirmation').style.display = 'block';
                 document.getElementById('confirmation').className = 'confirmation success';
                 document.getElementById('confirmation').innerHTML = `
@@ -1032,11 +1030,11 @@
                     <span style="font-size: 0.8rem;">(Your name + this PIN lets you come back and change your availability.)</span>
                 `;
             }
-
+ 
             updateForm();
             await loadVolunteers();
         }
-
+ 
         function cancelEdit() {
             editingId = null;
             document.getElementById('name').value = '';
@@ -1048,7 +1046,7 @@
             document.getElementById('confirmation').style.display = 'none';
             updateForm();
         }
-
+ 
         // ============================================================
         // PIN-BASED LOOKUP / EDIT
         // ============================================================
@@ -1056,14 +1054,14 @@
             const name = document.getElementById('lookupName').value.trim().toLowerCase();
             const pin = document.getElementById('lookupPin').value.trim();
             document.getElementById('lookupError').style.display = 'none';
-
+ 
             const match = volunteers.find(v => v.name.toLowerCase() === name && v.pin === pin);
-
+ 
             if (!match) {
                 document.getElementById('lookupError').style.display = 'block';
                 return;
             }
-
+ 
             editingId = match.id;
             document.getElementById('name').value = match.name;
             document.getElementById('experience').value = match.experience;
@@ -1073,41 +1071,41 @@
             document.getElementById('cancelEditBtn').style.display = 'block';
             document.getElementById('confirmation').style.display = 'none';
             updateForm();
-
+ 
             document.getElementById('lookupName').value = '';
             document.getElementById('lookupPin').value = '';
         }
-
+ 
         // ============================================================
         // ADMIN: VOLUNTEER LIST
         // ============================================================
         async function deleteVolunteer(id) {
-            const { error } = await supabase.from('volunteers').delete().eq('id', id);
+            const { error } = await supabaseClient.from('volunteers').delete().eq('id', id);
             if (error) {
                 showStatus('Could not remove volunteer: ' + error.message);
                 return;
             }
             await loadVolunteers();
         }
-
+ 
         function updateVolunteerList() {
             document.getElementById('vol-count').textContent = volunteers.length;
             const list = document.getElementById('volunteersList');
-
+ 
             if (volunteers.length === 0) {
                 list.innerHTML = `<div class="empty-state">No volunteers registered yet (or all entries have expired after ${EXPIRY_DAYS} days).</div>`;
                 document.getElementById('generateBtn').style.display = 'none';
                 document.getElementById('scheduleGrid').innerHTML = '';
                 return;
             }
-
+ 
             let html = `
                 <div class="volunteers-section">
                     <div class="volunteers-header">
                         <h2>Registered Volunteers (${volunteers.length})</h2>
                     </div>
             `;
-
+ 
             volunteers.forEach(vol => {
                 let slotCount = 0;
                 Object.values(vol.availableSundays).forEach(slots => {
@@ -1115,7 +1113,7 @@
                     if (slots.evening) slotCount++;
                 });
                 const sundayCount = Object.keys(vol.availableSundays).length;
-
+ 
                 html += `
                     <div class="volunteer-item">
                         <div class="volunteer-info">
@@ -1129,14 +1127,14 @@
                     </div>
                 `;
             });
-
+ 
             html += '</div>';
             list.innerHTML = html;
             document.getElementById('generateBtn').style.display = 'flex';
             anonymized = false;
             document.getElementById('scheduleGrid').innerHTML = '';
         }
-
+ 
         // ============================================================
         // GENERATE ANONYMIZED SCHEDULE
         // ============================================================
@@ -1145,7 +1143,7 @@
             sundays.forEach(sunday => {
                 schedule[sunday.id] = { display: sunday.display, morning: [], evening: [] };
             });
-
+ 
             volunteers.forEach(vol => {
                 Object.entries(vol.availableSundays).forEach(([sundayId, slots]) => {
                     if (schedule[sundayId]) {
@@ -1166,18 +1164,18 @@
                     }
                 });
             });
-
+ 
             suggestions = Object.entries(schedule).map(([id, sched]) => ({
                 sundayId: id,
                 display: sched.display,
                 morning: sched.morning.sort((a, b) => b.experience - a.experience),
                 evening: sched.evening.sort((a, b) => b.experience - a.experience)
             }));
-
+ 
             renderScheduleGrid();
             anonymized = true;
         }
-
+ 
         function renderScheduleGrid() {
             let html = `
                 <div class="info-box">
@@ -1186,7 +1184,7 @@
                 </div>
                 <div class="schedule-grid">
             `;
-
+ 
             suggestions.forEach(week => {
                 html += `
                     <div class="sunday-row">
@@ -1220,22 +1218,22 @@
                     </div>
                 `;
             });
-
+ 
             html += '</div>';
             document.getElementById('scheduleGrid').innerHTML = html;
         }
-
+ 
         // ============================================================
         // ALL SELECTIONS TAB
         // ============================================================
         function renderAllSelections() {
             const container = document.getElementById('allSelectionsContent');
-
+ 
             if (volunteers.length === 0) {
                 container.innerHTML = `<div class="empty-state">No volunteers registered yet. Selections will appear here once people sign up.</div>`;
                 return;
             }
-
+ 
             let html = `<div class="selections-table-wrap">`;
             html += `
                 <div class="legend">
@@ -1249,7 +1247,7 @@
             html += `<th class="name-col">Name</th><th>Experience</th>`;
             sundays.forEach(sunday => { html += `<th>${sunday.shortDisplay}</th>`; });
             html += `</tr></thead><tbody>`;
-
+ 
             volunteers.forEach(vol => {
                 html += `<tr><td class="name-col"><strong>${vol.name}</strong></td>`;
                 html += `<td>${vol.experience} yr${vol.experience !== 1 ? 's' : ''}</td>`;
@@ -1265,11 +1263,11 @@
                 });
                 html += `</tr>`;
             });
-
+ 
             html += `</tbody></table></div>`;
             container.innerHTML = html;
         }
-
+ 
         // ============================================================
         // TABS
         // ============================================================
@@ -1281,7 +1279,7 @@
             if (tab === 'allSelections') renderAllSelections();
             if (tab === 'admin') updateVolunteerList();
         }
-
+ 
         // ============================================================
         // FORM LISTENERS
         // ============================================================
